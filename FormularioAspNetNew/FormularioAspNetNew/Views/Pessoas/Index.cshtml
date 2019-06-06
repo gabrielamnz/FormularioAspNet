@@ -1,0 +1,87 @@
+﻿@model IEnumerable<FormularioAspNetNew.Models.Pessoa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoCivil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logradouro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroEndereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplementoEndereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Renda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoCivil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logradouro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroEndereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComplementoEndereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Renda)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { cpf=item.CPF }) |
+            @Html.ActionLink("Details", "Details", new { cpf=item.CPF }) |
+            @Html.ActionLink("Delete", "Delete", new { cpf=item.CPF })
+        </td>
+    </tr>
+}
+
+</table>
