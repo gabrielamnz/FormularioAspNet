@@ -48,9 +48,12 @@ namespace FormularioAspNetNew.Controllers
 
 
         // GET: Pessoas
-        public ActionResult Index(int pagina = 1)
+        public ActionResult Index(string busca = "", int pagina = 1)
         {
-            var pessoas = db.Pessoas.OrderBy(p => p.CPF).ToPagedList(pagina, 3);
+            var pessoas = db.Pessoas.Where(p => p.Nome.Contains(busca))
+                                    .OrderBy(p => p.CPF)
+                                    .ToPagedList(pagina, 3);
+            ViewBag.Busca = busca;
             return View(pessoas);
             //return View(db.Pessoas.ToList());
         }
