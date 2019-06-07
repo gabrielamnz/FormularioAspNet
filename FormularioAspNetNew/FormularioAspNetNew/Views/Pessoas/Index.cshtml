@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FormularioAspNetNew.Models.Pessoa>
+﻿@using X.PagedList.Mvc;
+@*@model IEnumerable<FormularioAspNetNew.Models.Pessoa>*@
+@model X.PagedList.PagedList<FormularioAspNetNew.Models.Pessoa>
 
 @{
     ViewBag.Title = "Index";
@@ -12,76 +14,98 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
+            @*@Html.DisplayNameFor(model => model.Nome)*@
+            Nome
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataNascimento)
+            @*@Html.DisplayNameFor(model => model.DataNascimento)*@
+            Data de Nascimento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sexo)
+            @*@Html.DisplayNameFor(model => model.Sexo)*@
+            Sexo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EstadoCivil)
+            @*@Html.DisplayNameFor(model => model.EstadoCivil)*@
+            Estado Civil
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @*@Html.DisplayNameFor(model => model.Estado)*@
+            Estado
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cidade)
+            @*@Html.DisplayNameFor(model => model.Cidade)*@
+            Cidade
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Logradouro)
+            @*@Html.DisplayNameFor(model => model.Logradouro)*@
+            Logradouro
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumeroEndereco)
+            @*@Html.DisplayNameFor(model => model.NumeroEndereco)*@
+            Número
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ComplementoEndereco)
+            @*@Html.DisplayNameFor(model => model.ComplementoEndereco)*@
+            Complemento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Renda)
+            @*@Html.DisplayNameFor(model => model.Renda)*@
+            Renda
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataNascimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sexo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstadoCivil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Logradouro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumeroEndereco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ComplementoEndereco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Renda)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { cpf=item.CPF }) |
-            @Html.ActionLink("Details", "Details", new { cpf=item.CPF }) |
-            @Html.ActionLink("Delete", "Delete", new { cpf=item.CPF })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>    
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>   
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoCivil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Logradouro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroEndereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComplementoEndereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Renda)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { cpf = item.CPF }) |
+                @Html.ActionLink("Details", "Details", new { cpf = item.CPF }) |
+                @Html.ActionLink("Delete", "Delete", new { cpf = item.CPF })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="row">
+    <div class="col-lg-8">
+        @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+    </div>
+    <div class="col-lg-4">
+        <span class="pull-right">
+            Listando registros de @Model.FirstItemOnPage a @Model.LastItemOnPage de um total de @Model.TotalItemCount
+        </span>
+    </div>
+</div>

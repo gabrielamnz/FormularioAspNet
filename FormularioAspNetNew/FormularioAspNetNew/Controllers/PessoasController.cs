@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FormularioAspNetNew.Models;
+using X.PagedList;
 
 namespace FormularioAspNetNew.Controllers
 {
@@ -47,9 +48,11 @@ namespace FormularioAspNetNew.Controllers
 
 
         // GET: Pessoas
-        public ActionResult Index()
+        public ActionResult Index(int pagina = 1)
         {
-            return View(db.Pessoas.ToList());
+            var pessoas = db.Pessoas.OrderBy(p => p.CPF).ToPagedList(pagina, 3);
+            return View(pessoas);
+            //return View(db.Pessoas.ToList());
         }
 
         // GET: Pessoas/Details/5
